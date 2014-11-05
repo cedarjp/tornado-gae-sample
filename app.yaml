@@ -1,0 +1,58 @@
+application: cedarjpme
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+derived_file_type:
+- python_precompiled
+
+handlers:
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+  mime_type: image/x-icon
+
+- url: /apple-touch-icon.png
+  static_files: apple-touch-icon.png
+  upload: apple-touch-icon.png
+  mime_type: image/png
+
+- url: /static
+  static_dir: static
+
+- url: /remote_api
+  script: google.appengine.ext.remote_api.handler.application
+  login: admin
+
+- url: /.*
+  script: main.wsgi_app
+
+
+skip_files: |
+  ^(.*/)?(
+  (app\.yaml)|
+  (app\.yml)|
+  (index\.yaml)|
+  (index\.yml)|
+  (#.*#)|
+  (.*~)|
+  (.*\.py[co])|
+  (.*\.po)|
+  (.*\.pot)|
+  (.*\.bat)|
+  (.*\.csv)|
+  (.*\.sh)|
+  (\..*)|
+  (manage\.py)|
+  (TODO)|
+  (TODO\.pdf)|
+  (README)|
+  (README\.pdf)|
+  (LICENSE)|
+  (gaema-LICENSE)|
+  (script\/.*)|
+  (Thumbs.db)|
+  (bulkloader.*)|
+  )$
+
